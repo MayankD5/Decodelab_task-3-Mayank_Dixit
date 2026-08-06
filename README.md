@@ -1,66 +1,63 @@
-# 🎓 Student Management REST API
+# Student Management REST API
 
-A RESTful API built using **Node.js** and **Express.js** to perform CRUD (Create, Read, Update, Delete) operations on student records.
+This is a simple REST API built using **Node.js**, **Express.js**, and **MySQL** as part of my Backend API Development internship.
+
+The project demonstrates how to build CRUD APIs that interact with a MySQL database instead of using in-memory data.
 
 ---
 
-## 📌 Features
+## Features
 
-- Get all students
-- Get student by ID
+- View all students
+- View a student by ID
 - Add a new student
-- Update existing student details
+- Update student details
 - Delete a student
-- Input validation
-- Proper HTTP status codes
-- Modular project structure (Routes, Controllers, Data)
+- Basic request validation
+- MySQL database integration
+- RESTful API design
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - Node.js
 - Express.js
-- JavaScript
+- MySQL
+- mysql2
 - Postman
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
-```text
-student-rest-api/
-│
-├── controllers/
+```
+.
+├── config
+│   └── db.js
+├── controllers
 │   └── studentController.js
-│
-├── data/
+├── routes
 │   └── students.js
-│
-├── routes/
-│   └── students.js
-│
 ├── app.js
 ├── package.json
-├── package-lock.json
-├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 🚀 Installation
+## Getting Started
 
 ### Clone the repository
 
 ```bash
-git clone https://github.com/MayankD5/student-management-rest-api.git
+git clone https://github.com/MayankD5/Decodelab_task-3-Mayank_Dixit.git
 ```
 
-### Navigate to the project
+### Move into the project
 
 ```bash
-cd student-management-rest-api
+cd Decodelab_task-3-Mayank_Dixit
 ```
 
 ### Install dependencies
@@ -69,32 +66,67 @@ cd student-management-rest-api
 npm install
 ```
 
-### Start the server
+---
+
+## Database Setup
+
+Create a database named:
+
+```sql
+student_management
+```
+
+Create the `students` table:
+
+```sql
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    registration_number VARCHAR(20) UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    course VARCHAR(100) NOT NULL,
+    semester INT NOT NULL,
+    section CHAR(1),
+    email VARCHAR(100),
+    phone VARCHAR(15),
+    cgpa DECIMAL(3,2)
+);
+```
+
+Update your MySQL credentials inside:
+
+```
+config/db.js
+```
+
+Example:
+
+```javascript
+host: "localhost",
+user: "root",
+password: "your_password",
+database: "student_management"
+```
+
+---
+
+## Run the Project
 
 ```bash
 npm start
 ```
 
-The server runs at:
+Server starts at:
 
-```text
+```
 http://localhost:3000
 ```
 
 ---
 
-## 📡 API Endpoints
-
-### Home Route
+## API Endpoints
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Welcome message |
-
-### Student Routes
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
+|---------|----------|-------------|
 | GET | `/students` | Get all students |
 | GET | `/students/:id` | Get a student by ID |
 | POST | `/students` | Add a new student |
@@ -103,66 +135,56 @@ http://localhost:3000
 
 ---
 
-## 📥 Sample Student JSON
+## Sample Request
 
 ```json
 {
-  "id": 1,
-  "registrationNumber": "23CSE001",
-  "name": "Mayank Dixit",
+  "registrationNumber": "23CSE004",
+  "name": "Aman Verma",
   "course": "B.Tech CSE",
   "semester": 6,
   "section": "A",
-  "email": "mayank@example.com",
-  "phone": "9876543210",
-  "cgpa": 8.75
+  "email": "aman@example.com",
+  "phone": "9876543213",
+  "cgpa": 8.95
 }
 ```
 
 ---
 
-## ✅ Validation
+## Validation
 
-The API validates the following required fields before creating a student:
+The API checks that these fields are provided before inserting a student:
 
 - Registration Number
 - Name
 - Course
 - Semester
 
-If validation fails, the API returns:
-
-```http
-400 Bad Request
-```
+If any required field is missing, the API returns **400 Bad Request**.
 
 ---
 
-## 📬 Testing
+## Testing
 
-All API endpoints were tested using **Postman**.
+The API was tested using Postman.
 
----
+The following operations were verified:
 
-## 📁 Project Architecture
-
-```
-Client (Postman)
-        │
-        ▼
-Express Routes
-        │
-        ▼
-Controllers
-        │
-        ▼
-Student Data
-```
+- Get all students
+- Get student by ID
+- Add student
+- Update student
+- Delete student
 
 ---
 
-## 👨‍💻 Author
+## About
+
+This project was developed as **Task 3** during my Backend API Development Internship to understand how Express APIs interact with a MySQL database using SQL queries.
+
+---
+
+## Author
 
 **Mayank Dixit**
-
-Backend API Development Internship Project (Task 2)
